@@ -69,35 +69,30 @@ const images = [
 const gallery = document.querySelector('.gallery');
 
 images.forEach(({ preview, original, description }) => {
-    const galleryItemHTML = `
-      <li class="gallery-item">
-        <a class="gallery-link" href="${original}" download>
-          <img class="gallery-image" src="${preview}" data-source="${original}" alt="${description}" />
-        </a>
-      </li>`;
-  
-    gallery.insertAdjacentHTML("beforeend", galleryItemHTML);
-  });
-  
-  gallery.addEventListener("click", handleClick);
-  
-  function handleClick(e) {
-    e.preventDefault();
-  
-    if (e.target.nodeName !== "IMG") {
-      return;
-    }
-  
-    const largeImage = e.target.dataset.source;
-    const instance = basicLightbox.create(`
-        <img src="${largeImage}">
-      `);
-  
-    instance.show();
+  const galleryItemHTML = `
+    <li class="gallery-item">
+      <a class="gallery-link" href="${original}" download>
+        <img class="gallery-image" src="${preview}" data-source="${original}" alt="${description}" />
+      </a>
+    </li>
+  `;
+
+  gallery.insertAdjacentHTML("beforeend", galleryItemHTML);
+});
+
+gallery.addEventListener("click", handleClick);
+
+function handleClick(e) {
+  e.preventDefault();
+
+  if (e.target.nodeName !== "IMG") {
+    return;
   }
 
-//    const galleryItems = images
-//    .map(img => `<li class="gallery-item"><img class="gallery-image" src=${img.preview} alt=${img.description} "></li>`)
-//      .join("");
+  const largeImage = e.target.dataset.source;
+  const instance = basicLightbox.create(`
+      <img src="${largeImage}">
+    `);
 
-//  gallery.innerHTML = galleryItems;
+  instance.show();
+}
