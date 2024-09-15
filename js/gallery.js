@@ -65,28 +65,24 @@ const images = [
       },
     ];
     
-
 const gallery = document.querySelector('.gallery');
 
 images.forEach(({ preview, original, description }) => {
-  const galleryItemHTML = `
-    <li class="gallery-item">
+  const galleryItem = 
+  `<li class="gallery-item">
       <a class="gallery-link" href="${original}" download>
         <img class="gallery-image" src="${preview}" data-source="${original}" alt="${description}" />
       </a>
-    </li>
-  `;
-
-  gallery.insertAdjacentHTML("beforeend", galleryItemHTML);
+  </li>`;
+  gallery.insertAdjacentHTML("beforeend", galleryItem);
 });
 
 gallery.addEventListener("click", handleClick);
 
 function handleClick(e) {
   e.preventDefault();
-
   if (e.target.nodeName !== "IMG") {
-    return;
+  return;
   }
 
   const largeImage = e.target.dataset.source;
